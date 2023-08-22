@@ -4,20 +4,17 @@ import {
   Divider,
   Drawer,
   IconButton,
-  Toolbar,
   Typography,
 } from "@mui/material";
 import Brightness2Icon from "@mui/icons-material/Brightness2";
 import FormatAlignCenterIcon from "@mui/icons-material/FormatAlignCenter";
-import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import { Link, Outlet } from "react-router-dom";
+import { Link } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 
 const Header = () => {
-  const isAuthenticated = true;
+  const isAuthenticated = false;
   const user = {
     role: "admin",
   };
