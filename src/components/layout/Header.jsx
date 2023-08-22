@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Box,
   Button,
@@ -12,19 +13,19 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import LogoutIcon from "@mui/icons-material/Logout";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import { logoutUser } from "../../redux/userSlice";
+import { useDispatch } from "react-redux";
 
-const Header = () => {
-  const isAuthenticated = false;
-  const user = {
-    role: "admin",
-  };
+const Header = ({isLoggedIn=false,user}) => {
 
   ////modal
   const [state, setState] = useState(false);
   ///modal
+
+  const dispatch = useDispatch();
   const logOut = () => {
-    console.log("Logout");
-    setState(false)();
+    setState(false);
+    dispatch(logoutUser())
   };
   return (
     <>
@@ -142,7 +143,7 @@ const Header = () => {
               bottom="2rem"
               width="100%"
             >
-              {isAuthenticated ? (
+              {isLoggedIn ? (
                 <>
                   <Box display="flex" justifyContent="center" gap={1}>
                     <Link

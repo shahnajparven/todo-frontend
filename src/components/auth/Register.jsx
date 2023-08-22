@@ -10,6 +10,7 @@ const Register = () => {
   const [imgPrev, setImgPrev] = useState("");
   const [image, setImage] = useState("");
 
+
   const changeFileHandler = (e) => {
     const file = e.target.files[0];
     const reader = new FileReader();
@@ -19,6 +20,9 @@ const Register = () => {
       setImage(file);
     };
   };
+
+
+
 
   return (
     <Box className="container">

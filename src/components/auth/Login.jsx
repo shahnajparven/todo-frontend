@@ -8,15 +8,11 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const { isLoading, isLoggedIn,message } = useSelector((state) => state.user);
+  const { isLoading} = useSelector((state) => state.user);
 
-  useEffect(() => {
-    if (isLoggedIn) {
-      alert(message);
-    }
-  }, [dispatch, isLoggedIn,message]);
 
-  const signIn = () => {
+  const submitHandler = () => {
+    // e.preventDefault();
     console.log( email, password)
     dispatch(loginUser({ email, password }));
   };
@@ -29,7 +25,7 @@ const Login = () => {
           <Typography display="flex" justifyContent="center" variant="h4">
             Sign In Your Account
           </Typography>
-          <form>
+          <form onSubmit={submitHandler}>
             <Box>
               <Box display="flex" justifyContent="center" py={2}>
                 <Typography>Email: </Typography>
@@ -57,7 +53,7 @@ const Login = () => {
                 </Link>
               </Box>
               <Box display="flex" justifyContent="center" gap={2}>
-                <Button onClick={signIn} variant="contained" type="submit">
+                <Button variant="contained" type="submit">
                   Login
                 </Button>
                 <Link to="/signup">

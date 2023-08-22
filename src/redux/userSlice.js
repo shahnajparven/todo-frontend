@@ -21,12 +21,35 @@ export const loginUser = createAsyncThunk(
     console.log( user,'action')
     try {
       const { data } = await apiInstance.post("user/login", user);
-      return fulfillWithValue(data.message);
+      return fulfillWithValue(data);
+    } catch (error) {
+      return rejectWithValue(error.response.data.message || "Unknown Error");
+    }
+  }
+);
+
+export const loadUser = createAsyncThunk("user/loadUser", async (rejectWithValue) => {
+  try {
+    const { data } = await apiInstance.get("user/me");
+    return data.data;
+  } catch (error) {
+    return rejectWithValue(error?.response?.data.message || "Unknown Error");
+  }
+});
+export const logoutUser = createAsyncThunk(
+  "user/logoutUser",
+  async ( user,{ rejectWithValue, fulfillWithValue }) => {
+    try {
+      const { data } = await apiInstance.get("user/logout");
+      return fulfillWithValue(data.data || data.message);
     } catch (error) {
       return rejectWithValue(error?.response?.data.message || "Unknown Error");
     }
   }
 );
+
+
+
 
 const initialState = {
   isLoading: false,
@@ -63,30 +86,68 @@ export const userSlice = createSlice({
     // login user
     builder.addCase(loginUser.pending, (state) => {
       state.isLoading = true;
-      state.isLoggedIn = false;
+
     });
     builder.addCase(loginUser.fulfilled, (state,action) => {
-      console.log(action.payload,'reducer')
       state.isLoading = false;
       state.isLoggedIn = true;
-      state.message = action.payload;
-      state.error = null;
+      state.user = action.payload.user;
+      state.message = action.payload.message;
     });
     builder.addCase(loginUser.rejected, (state, action) => {
-      console.log(action.payload,'reducer')
       state.isLoading = false;
       state.error = action.payload;
       state.isLoggedIn = false;
     });
 
+     // load user
+     builder.addCase(loadUser.pending, (state) => {
+      state.isLoading = true;
+      state.isLoggedIn = false;
+    });
+    builder.addCase(loadUser.fulfilled, (state, action) => {
+      state.isLoading = false;
+      state.isLoggedIn = true;
+      state.user = action.payload;
+      state.error = null;
+    });
+    builder.addCase(loadUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+      state.isLoggedIn = false;
+      state.user = [];
+    });
+     // logout user
+     builder.addCase(logoutUser.pending, (state) => {
+      state.isLoading = true;
+    });
+    builder.addCase(logoutUser.fulfilled, (state,action) => {
+      state.isLoading = false;
+      state.isLoggedIn = false;
+      state.message = action.payload;
+      state.user = [];
+    });
+    builder.addCase(logoutUser.rejected, (state, action) => {
+      state.isLoading = false;
+      state.isLoggedIn = true;
+      state.error = action.payload;
+    });
+
   },
-  reducers: {
-    reset: () => initialState,
-    clearError: (state) => ({
-      ...state,
-      error: null,
-    }),
+
+  clearError: state => {
+    state.error = null;
   },
+  clearMessage: state => {
+    state.message = null;
+  },
+  // reducers: {
+  //   reset: () => initialState,
+  //   clearError: (state) => ({
+  //     ...state,
+  //     error: null,
+  //   }),
+  // },
 });
-export const { reset, clearError } = userSlice.actions;
+// export const { clearMessage, clearError } = userSlice.actions;
 export default userSlice.reducer;
