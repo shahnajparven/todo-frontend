@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Lato&display=swap');
+:root {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+.container {
+  padding: 8rem 5rem 0 5rem;
+  /* padding-top: 8rem; */
+
+}
+.vectorImage {
+  filter: drop-shadow(0 40px 10px rgb(0, 0, 0, 0.3));
+
+  animation: vectorAnimation 1s infinite ease-in-out alternate;
+}
+@keyframes vectorAnimation {
+  to {
+    transform: translateY(-10px);
+  }
+}
+.videoPlay video {
+  height: 50vh;
+  width: 50vw;
+  border: 1px solid rgb(0, 0, 0, 0.18);
+  border-radius: 5px;
+  outline: none;
+}
+
+.nav-item{
+  list-style-type: none;
+  text-decoration: none;
+  line-height: 50px;
+  color: black;
+}
+.searchBar{
+  width: 50%;
+  height: 5vh;
+  padding-left: 8px;
+  border: 1px solid #FD8D14;
+}
+.searchBar:focus{
+  outline: none;
+}
