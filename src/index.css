@@ -46,3 +46,14 @@ body {
 .searchBar:focus{
   outline: none;
 }
+.inputarea{
+  width: 30%;
+  height: 5vh;
+  padding-left: 8px;
+}
+.inputarea:focus{
+  outline: none;
+}
+.inputlabel{
+  width: 100%;
+}

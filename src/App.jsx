@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import { loadUser } from "./redux/userSlice";
 // import { ProtectedRoute } from "protected-route-react";
 import { ProtectedRoute } from "protected-route-react";
+import CreateCourse from "./pages/createCourse/CreateCourse";
 
 function App() {
   const { isLoading, error, message, user, isLoggedIn } = useSelector(
@@ -49,6 +50,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/newcourses" element={<CreateCourse />} />
             <Route
               path="/login"
               element={

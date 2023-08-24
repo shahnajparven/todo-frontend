@@ -1,4 +1,4 @@
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Divider, Typography } from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -22,14 +22,23 @@ const Login = () => {
         <p>Loading...</p>
       ) : (
         <Box className="container">
-          <Typography display="flex" justifyContent="center" variant="h4">
+          <Typography
+            display="flex"
+            justifyContent="center"
+            variant="h4"
+            py={2}
+          >
             Sign In Your Account
           </Typography>
+          <Divider />
           <form onSubmit={submitHandler}>
-            <Box>
+            <Box py={2}>
               <Box display="flex" justifyContent="center" py={2}>
-                <Typography>Email: </Typography>
+                <Typography variant="span" lineHeight={2.5} pr={4.6}>
+                  Email:{" "}
+                </Typography>
                 <input
+                  className="inputarea"
                   type="email"
                   placeholder="Enter Your Email"
                   id="email"
@@ -38,8 +47,11 @@ const Login = () => {
                 />
               </Box>
               <Box display="flex" justifyContent="center" py={2}>
-                <Typography>Password: </Typography>
+                <Typography variant="span" lineHeight={2.5} pr={2}>
+                  Password:{" "}
+                </Typography>
                 <input
+                  className="inputarea"
                   type="password"
                   placeholder="Enter Your Password"
                   id="password"
@@ -49,15 +61,59 @@ const Login = () => {
               </Box>
               <Box display="flex" justifyContent="center">
                 <Link to="/forgotpassword">
-                  <Button>Forget Password ?</Button>
+                  <Button
+                    sx={{
+                      textTransform: "none",
+                      color: "#FD8D14",
+                    }}
+                  >
+                    {" "}
+                    Forget Password ?
+                  </Button>
                 </Link>
               </Box>
               <Box display="flex" justifyContent="center" gap={2}>
-                <Button variant="contained" type="submit">
+                <Button
+                  variant="contained"
+                  type="submit"
+                  sx={{
+                    background: "#FD8D14",
+                    color: "black",
+                    textTransform: "none",
+                    boxShadow: "none",
+                    "&:hover": {
+                      backgroundColor: "#F6F4EB",
+                      borderColor: "none",
+                      boxShadow: "none",
+                      color: "#FD8D14",
+                    },
+                    "&:focus": {
+                      boxShadow: "#F6F4EB",
+                    },
+                  }}
+                >
                   Login
                 </Button>
                 <Link to="/signup">
-                  <Button variant="outlined" type="submit">
+                  <Button
+                    variant="outlined"
+                    type="submit"
+                    sx={{
+                      borderColor: "#FD8D14",
+                      color: "black",
+                      textTransform: "none",
+                      boxShadow: "none",
+                      "&:hover": {
+                        backgroundColor: "#F6F4EB",
+                        borderColor: "#FD8D14",
+                        boxShadow: "none",
+                        color: "#FD8D14",
+                      },
+                      "&:focus": {
+                        boxShadow: "#F6F4EB",
+                      },
+                    }}
+                  >
                     Register
                   </Button>
                 </Link>

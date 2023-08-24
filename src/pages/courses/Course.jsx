@@ -14,9 +14,11 @@ const Course = ({
     lectureCount,
   }) => {
   return (
-    <Box className="course" alignItems="center" width={250}>
-    <img src={image} height={250} width={250} alt="img" />
-    <Box lineHeight={2} display='flex' flexDirection='column' py={2}>
+    <Box className="course" alignItems="center" width={300} boxShadow={4} mx={2} my={2}>
+      <Box >
+    <img src={image} height={250} width={'100%'} alt="img" />
+    </Box>
+    <Box lineHeight={2} display='flex' flexDirection='column' py={2} px={2}>
       <Typography variant="h5" fontSize={18}>
         {title}
       </Typography>

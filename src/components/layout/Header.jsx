@@ -113,7 +113,7 @@ const Header = ({isLoggedIn=false,user}) => {
                 onClick={() => {
                   setState(false);
                 }}
-                to="#"
+                to="/newcourses"
                 className="nav-item"
               >
                 <Box>Request a Course</Box>

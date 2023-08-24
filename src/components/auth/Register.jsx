@@ -47,8 +47,9 @@ const Register = () => {
       <form onSubmit={submitHandler}>
         <Box>
           <Box display="flex" justifyContent="center" py={2}>
-            <Typography>Name: </Typography>
+            <Typography variant="span" lineHeight={2.5} pr={4.6}>Name: </Typography>
             <input
+              className="inputarea"
               type="text"
               placeholder="Enter Your Name"
               id="name"
@@ -57,8 +58,9 @@ const Register = () => {
             />
           </Box>
           <Box display="flex" justifyContent="center" py={2}>
-            <Typography>Email: </Typography>
+            <Typography variant="span" lineHeight={2.5} pr={4.6}>Email: </Typography>
             <input
+              className="inputarea"
               type="email"
               placeholder="Enter Your Email"
               id="email"
@@ -67,8 +69,9 @@ const Register = () => {
             />
           </Box>
           <Box display="flex" justifyContent="center" py={2}>
-            <Typography>Password: </Typography>
+            <Typography variant="span" lineHeight={2.5} pr={3}>Password: </Typography>
             <input
+              className="inputarea"
               type="password"
               placeholder="Enter Your Password"
               id="password"
@@ -88,11 +91,47 @@ const Register = () => {
           </Box>
 
           <Box display="flex" justifyContent="center" gap={2}>
-            <Button variant="contained" type="submit">
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{
+                background: "#FD8D14",
+                color: "black",
+                textTransform: "none",
+                boxShadow: "none",
+                "&:hover": {
+                  backgroundColor: "#F6F4EB",
+                  borderColor: "none",
+                  boxShadow: "none",
+                  color: "#FD8D14",
+                },
+                "&:focus": {
+                  boxShadow: "#F6F4EB",
+                },
+              }}
+            >
               Sign Up
             </Button>
             <Link to="/login">
-              <Button variant="outlined" type="submit">
+              <Button
+                variant="outlined"
+                type="submit"
+                sx={{
+                  borderColor: "#FD8D14",
+                  color: "black",
+                  textTransform: "none",
+                  boxShadow: "none",
+                  "&:hover": {
+                    backgroundColor: "#F6F4EB",
+                    borderColor: "#FD8D14",
+                    boxShadow: "none",
+                    color: "#FD8D14",
+                  },
+                  "&:focus": {
+                    boxShadow: "#F6F4EB",
+                  },
+                }}
+              >
                 Login
               </Button>
             </Link>
