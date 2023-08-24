@@ -6,7 +6,7 @@ export const regUser = createAsyncThunk(
   async (user, { rejectWithValue, fulfillWithValue }) => {
     try {
       const { data } = await apiInstance.post("user/register", user);
-      return fulfillWithValue(data.message);
+      return fulfillWithValue(data);
     } catch (error) {
       return rejectWithValue(
         error?.response?.data.message || "Unknown Error"
@@ -69,13 +69,13 @@ export const userSlice = createSlice({
     // add data
     builder.addCase(regUser.pending, (state) => {
       state.isLoading = true;
-      state.success = false;
     });
     builder.addCase(regUser.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.message = action.payload;
-      state.success = true;
       state.error = null;
+      state.isLoggedIn = true;
+      state.user = action.payload.user;
+      state.message = action.payload.message;
     });
     builder.addCase(regUser.rejected, (state, action) => {
       state.isLoading = false;

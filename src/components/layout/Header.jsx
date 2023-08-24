@@ -15,9 +15,11 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import { logoutUser } from "../../redux/userSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom"
+
 
 const Header = ({isLoggedIn=false,user}) => {
-
+  const navigate = useNavigate();
   ////modal
   const [state, setState] = useState(false);
   ///modal
@@ -26,6 +28,7 @@ const Header = ({isLoggedIn=false,user}) => {
   const logOut = () => {
     setState(false);
     dispatch(logoutUser())
+    navigate("/")
   };
   return (
     <>

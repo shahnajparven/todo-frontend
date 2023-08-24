@@ -2,14 +2,17 @@ import { Avatar, Box, Button, Typography } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import imageSrc from "../../assets/images/img1.png";
+import { useDispatch } from "react-redux";
+import { regUser } from "../../redux/userSlice";
 
 const Register = () => {
+  const dispatch = useDispatch();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [imgPrev, setImgPrev] = useState("");
   const [image, setImage] = useState("");
-
 
   const changeFileHandler = (e) => {
     const file = e.target.files[0];
@@ -21,8 +24,17 @@ const Register = () => {
     };
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const myForm = new FormData();
 
+    myForm.append("name", name);
+    myForm.append("email", email);
+    myForm.append("password", password);
+    myForm.append("file", image);
 
+    dispatch(regUser(myForm));
+  };
 
   return (
     <Box className="container">
@@ -30,9 +42,9 @@ const Register = () => {
         Register Your Account
       </Typography>
       <Box display="flex" justifyContent="center" my={2}>
-        <Avatar src={imgPrev}  sx={{ width: 70, height: 70 }}/>
+        <Avatar src={imgPrev} sx={{ width: 70, height: 70 }} />
       </Box>
-      <form>
+      <form onSubmit={submitHandler}>
         <Box>
           <Box display="flex" justifyContent="center" py={2}>
             <Typography>Name: </Typography>
