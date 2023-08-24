@@ -1,5 +1,5 @@
 import { Box, Button, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { loginUser } from "../../redux/userSlice";
@@ -7,13 +7,13 @@ import { loginUser } from "../../redux/userSlice";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const dispatch = useDispatch();
-  const { isLoading} = useSelector((state) => state.user);
+  const { isLoading } = useSelector((state) => state.user);
 
-
-  const submitHandler = () => {
-    // e.preventDefault();
-    console.log( email, password)
+  const submitHandler = (e) => {
+    e.preventDefault();
+    console.log(email, password);
     dispatch(loginUser({ email, password }));
   };
   return (
